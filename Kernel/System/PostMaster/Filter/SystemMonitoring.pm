@@ -267,12 +267,17 @@ sub _MailParse {
 
             if ( $Line =~ /$Regex/ ) {
 
-                # get the found element value
-                $Self->{$Element} = $1;
-
-                # remember that we found this element already
-                $AlreadyMatched{$Element} = 1;
-            }
+            # get the found element value
+		    if (defined $2)
+		    {
+			    $Self->{$Element} = $2;
+		    }
+		    else
+		    {
+		       	$Self->{$Element} = $1;
+		    }
+        # remember that we found this element already
+        $AlreadyMatched{$Element} = 1;
         }
     }
 
